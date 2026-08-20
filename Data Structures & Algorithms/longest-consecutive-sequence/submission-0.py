@@ -1,0 +1,21 @@
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+
+        numSet = set(nums)
+
+        longestStreak = 1
+        currentStreak = 1
+
+        for num in nums:
+            if num-1 not in numSet:
+                n = num
+                while n+1 in numSet:
+                    currentStreak+=1
+                    n +=1
+                longestStreak = max(longestStreak, currentStreak)
+                currentStreak = 1
+        return longestStreak
+
+
